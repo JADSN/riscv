@@ -35,3 +35,4 @@ _start:
 
     li a7, 93 # Define system call
     ecall
+    
