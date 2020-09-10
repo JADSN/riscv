@@ -1,8 +1,11 @@
 # Goal: Show some message in terminal
+
 # Prototype: int print(const * char restrict format, ...);
+
 # Result: Writes message in terminal defined in base address (a1)
+
 # Usage:
-#       la a1, "Hello World\n # -- a1: Base address
+#       la a1, "Hello World\n" # -- a1: Base address
 #       li a2, 12 # -- a2: Set string length (0~255)
 #
 

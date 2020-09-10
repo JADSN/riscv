@@ -20,6 +20,7 @@
 
 .include "./src/exit.s"
 .include "./src/print.s"
+.include "./src/putchar.s"
 
 .align 1
 
@@ -27,50 +28,12 @@
 
 .section .text
 
-
-# # Goal: Show some message in terminal
-# # Prototype: int printf(const * char restrict format, ...);
-# # Usage: Writes a sequence of caracters in terminal
-# echo_printf_1:
-#         li      a0, 1 # File Descriptor - (STDOUT)
-#         la      a1, msg_01 # Load base address from stack
-#         li      a2, 12 # Set string length
-#         li      a7, 64 # Linux Syscall -- write
-#         ecall
-#         ret
-
-# echo_printf_2:
-#         li      a0, 1 # File Descriptor - (STDOUT)
-#         la      a1, msg_02 # Load base address from stack
-#         li      a2, 5 # Set string length
-#         li      a7, 64 # Linux Syscall -- write
-#         ecall
-#         ret
-
 _start:
-        # GOAL: Show "Hello World\n" in terminal -- Hardcoded
-
-        # Procedure Call
-        # li      a0, 1 # File Descriptor - (STDOUT)
-        # la      a1, msg_01 # Load base address from stack
-        # li      a2, 12 # Set string length
-        # li      a7, 64 # Linux Syscall -- write
-        # ecall
-
-        # call echo_printf_1
-
-        # # Procedure Call
-        # # li      a0, 1 # File Descriptor - (STDOUT)
-        # # la      a1, msg_02 # Load base address from stack
-        # # li      a2, 5 # Set string length
-        # # li      a7, 64 # Linux Syscall -- write
-        # # ecall
-        # call echo_printf_2
-
         # Procedure Call
         # Params:
         #       la a1, base_address -- a1: Base address
         #       li a2, 0~255 -- a2: string length
+
         la      a1, msg_01 # -- a1: Set base address
         li      a2, 12 # -- a2: Set string length
         call    print
@@ -79,9 +42,24 @@ _start:
         # Params:
         #       la a1, base_address -- a1: Base address
         #       li a2, 0~255 -- a2: string length
+
         la      a1, msg_02 # -- a1: Set base address
         li      a2, 5 # -- a2: Set string length
         call    print
+
+        # Procedure Call
+        # Params:
+        #       la a1, base_address -- a1: Base address
+
+        la      a1, msg_03 # -- a1: Set base address
+        call    putchar
+
+        # Procedure Call
+        # Params:
+        #       la a1, base_address -- a1: Base address
+
+        la      a1, msg_enter # -- a1: Set base address
+        call    putchar
 
         # Procedure Call
         # Params:
@@ -93,3 +71,5 @@ _start:
 .section .rodata
         msg_01: .string "Hello World\n"
         msg_02: .string "ASDF\n"
+        msg_03: .string "A"
+        msg_enter: .string "\n"

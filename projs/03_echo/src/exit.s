@@ -1,6 +1,9 @@
 # Goal: Causes normal program termination to occur.
+
 # Prototype: void(int status);
+
 # Result: Show 0 when occurs success and 1 when occurs failure.
+
 # Usage:
 #       li a0, status_code(int)
 #       call exit
