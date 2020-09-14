@@ -19,8 +19,6 @@
 # Goal Exit program -- Module
 
 .include "./src/exit.s"
-.include "./src/print.s"
-.include "./src/putchar.s"
 
 .align 1
 
@@ -28,39 +26,18 @@
 
 .section .text
 
+.include "./src/puts.s"
+
 _start:
-        # Procedure Call
+        # ----------------------------------------------
+        # Procedure Call - puts
         # Params:
-        #       la a1, base_address -- a1: Base address
-        #       li a2, 0~255 -- a2: string length
+        #       a1 - Base address from stack (section rodata)
+        la      a1, char_1
+        call    puts
 
-        la      a1, msg_01 # -- a1: Set base address
-        li      a2, 12 # -- a2: Set string length
-        call    print
-
-        # Procedure Call
-        # Params:
-        #       la a1, base_address -- a1: Base address
-        #       li a2, 0~255 -- a2: string length
-
-        la      a1, msg_02 # -- a1: Set base address
-        li      a2, 5 # -- a2: Set string length
-        call    print
-
-        # Procedure Call
-        # Params:
-        #       la a1, base_address -- a1: Base address
-
-        la      a1, msg_03 # -- a1: Set base address
-        call    putchar
-
-        # Procedure Call
-        # Params:
-        #       la a1, base_address -- a1: Base address
-
-        la      a1, msg_enter # -- a1: Set base address
-        call    putchar
-
+        # ----------------------------------------------
+        # Description: Exit program
         # Procedure Call
         # Params:
         #       a0 - status code
@@ -69,7 +46,5 @@ _start:
 
 # Data section -- labels
 .section .rodata
-        msg_01: .string "Hello World\n"
-        msg_02: .string "ASDF\n"
-        msg_03: .string "A"
-        msg_enter: .string "\n"
+        char_1: .string "A"
+        # enter: .string "\n"

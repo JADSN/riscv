@@ -6,8 +6,8 @@
 # indicator for the stream is set and putchar returns EOF.
 
 # Usage:
-#       la a1, "A" # -- a1: Base address
-#
+#       la      a1, "A" # -- a1: Base address
+#       call    putchar
 
 # Imports
 .include "./src/file_descriptor.s"
@@ -26,4 +26,6 @@ putchar:
 
         li      a7, SYS_WRITE # Linux Syscall -- write
         ecall
+        # call    stdwrite
+
         ret
