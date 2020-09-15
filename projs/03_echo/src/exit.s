@@ -11,6 +11,13 @@
 # Imports
 .include "./src/linux_syscall.s"
 
+# .align 1
+
+# .global exit
+# .type exit, @function
+
+# .section .text
+
 exit:
         # Local Variables (t1)
 
@@ -22,5 +29,5 @@ exit:
         #           # for next function
 
         li a7, SYS_EXIT # Linux Syscall -- exit
-        ecall
+        ecall # Set Linux Syscall
         ret

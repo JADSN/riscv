@@ -18,7 +18,8 @@ cat src/main.s | sed "s/printf/print/g"
 ## ISOC99 - puts - Pg. 311
 - [X] Implemnent `puts` -- Hardcoded
 - [X] Implemnent `puts` -- (arguments & return values)
-- [ ] Implemnent `puts` -- Module
+- [X] Implemnent `puts` -- Module
+- [X] Implemnent `puts` -- Using `putchar`
 
 ## My new_line - Append `\n` in termninal
 - [ ] Implemnent `new_line` -- Hardcoded
@@ -26,4 +27,4 @@ cat src/main.s | sed "s/printf/print/g"
 - [ ] Implemnent `new_line` -- Module
 
 ## Linux Syscall - write (64)
-- [ ] Make module
+- [ ] Turn in module

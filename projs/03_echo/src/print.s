@@ -13,6 +13,13 @@
 .include "./src/file_descriptor.s"
 .include "./src/linux_syscall.s"
 
+# .align 1
+
+# .global print
+# .type print, @function
+
+# .section .text
+
 print:
         # Local Variables (t1, t2)
         mv      t1, a1 # -- t1: Base address

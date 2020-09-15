@@ -18,33 +18,116 @@
 
 # Goal Exit program -- Module
 
+
+# .include "./src/file_descriptor.s"
+# .include "./src/linux_syscall.s"
+
+.include "./src/putchar.s"
+
+# .include "./src/puts.s"
+
 .include "./src/exit.s"
 
-.align 1
+
+# .align 1
 
 .global _start
 
 .section .text
 
-.include "./src/puts.s"
+# exit
+# putchar
+# strlen
+# puts
+
 
 _start:
-        # ----------------------------------------------
-        # Procedure Call - puts
-        # Params:
-        #       a1 - Base address from stack (section rodata)
-        la      a1, char_1
-        call    puts
+        
+
+
 
         # ----------------------------------------------
-        # Description: Exit program
         # Procedure Call
+        # Description: print_msg
+        li      a0, 72 # 'H'
+        call    putchar
+
+        # ----------------------------------------------
+        # Procedure Call
+        # Description: print_msg
+        li      a0, 101 # 'e'
+        call    putchar
+
+        # ----------------------------------------------
+        # Procedure Call
+        # Description: print_msg
+        li      a0, 108 # 'l'
+        call    putchar
+
+        # ----------------------------------------------
+        # Procedure Call
+        # Description: print_msg
+        li      a0, 108 # 'l'
+        call    putchar
+
+        # ----------------------------------------------
+        # Procedure Call
+        # Description: print_msg
+        li      a0, 111 # 'o'
+        call    putchar
+
+        # ----------------------------------------------
+        # Procedure Call
+        # Description: print_msg
+        li      a0, 32 # ' '
+        call    putchar
+
+        # ----------------------------------------------
+        # Procedure Call
+        # Description: print_msg
+        li      a0, 119 # 'w'
+        call    putchar
+
+        # ----------------------------------------------
+        # Procedure Call
+        # Description: print_msg
+        li      a0, 111 # 'o'
+        call    putchar
+
+        # ----------------------------------------------
+        # Procedure Call
+        # Description: print_msg
+        li      a0, 114 # 'r'
+        call    putchar
+
+        # ----------------------------------------------
+        # Procedure Call
+        # Description: print_msg
+        li      a0, 108 # 'l'
+        call    putchar
+
+        # ----------------------------------------------
+        # Procedure Call
+        # Description: print_msg
+        li      a0, 100 # 'd'
+        call    putchar
+
+        # ----------------------------------------------
+        # Procedure Call
+        # Description: print_msg
+        li      a0, 33 # '!'
+        call    putchar
+
+        # ----------------------------------------------
+        # Procedure Call
+        # Description: print_msg
+        li      a0, 10 # '\n'
+        call    putchar
+
+        # ----------------------------------------------
+        # Procedure Call
+        # Description: Exit function
         # Params:
         #       a0 - status code
         li      a0, 0
         call    exit
-
-# Data section -- labels
-.section .rodata
-        char_1: .string "A"
-        # enter: .string "\n"
