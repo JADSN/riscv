@@ -21,10 +21,26 @@
 
 .section .text
 
-.include "./src/file_descriptors.s"
-.include "./src/linux_syscalls.s"
-.include "./src/exit.s"
+# File descriptors
+.equ FD_STDOUT, 1
+.equ FD_STDERR, 2
+
+# Chamadas de sistemas Linux
+.equ SYS_WRITE, 64 # Escreve dado no terminal
+.equ SYS_EXIT,  93 # Sai do programa
+
+
+exit:
+	# li		a0, 0 # Define o código de sucesso
+	li		a7, SYS_EXIT # Define o codigo da chamada de sistema
+	ecall
+
+function_a:
+	li		a0, 32
+	call	exit
+
 
 _start:
+	j		function_a
 	j		exit
 

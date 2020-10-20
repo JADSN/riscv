@@ -15,16 +15,31 @@
 #   s1     | Callee-saved register              | Callee
 #   s2-s11 | Callee-saved registers             | Callee
 
+.include "./src/file_descriptor.s"
+.include "./src/linux_syscalls.s"
+.include "./src/exit.s"
+
 .align 1
 
 .global _start
 
 .section .text
 
-.include "./src/file_descriptors.s"
-.include "./src/linux_syscalls.s"
-.include "./src/exit.s"
-
 _start:
-	j		exit
 
+	li		a0, 0x4241 # 'AB' - Define o 1° parametro
+
+    sh      a0, -2(sp) # Armazena 2Bytes na stack
+
+	addi    t1, sp, -2 # Aloca 2Bytes na stack
+    li      a0, FD_STDOUT # Define o file descriptor
+
+	mv		a1, t1 # Obtêm o valor do enderaço contido na stack
+
+	li      a2, 2 # Define o tamanho da string
+
+    li      a7, SYS_WRITE # Chamada de sistema -> 64 - write
+    ecall
+
+	# Chamada de Procedimento
+	call exit
